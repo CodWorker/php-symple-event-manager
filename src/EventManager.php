@@ -35,6 +35,9 @@ class EventManager implements IEventManager
     private $events = [];
     
     public function addEventListener($type, callable $callback){
+        if(!is_string($type)){
+            throw new \Exception('First argument must be a string');
+        }
         $this->events[$type][] = $callback;
     }
 
