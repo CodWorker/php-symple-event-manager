@@ -19,7 +19,7 @@ namespace Coder\TestWork1;
 class EventManager implements IEventManager 
 {
     /**
-     * 
+     * Example:
      * [
      *     "type_one" => [
      *         [0] => callable $callback,
@@ -41,13 +41,39 @@ class EventManager implements IEventManager
         $this->events[$type][] = $callback;
     }
 
+    /**
+     * fireEvent function
+     *
+     * @param string $type
+     * @return void
+     */
     public function fireEvent($type){
-        $ev = $this->events[$type];
-        foreach($ev as $callbeck){
+        if(!is_string($type)){
+            throw new \Exception('First argument must be a string');
+        }
+
+        $ev = $this->getEvents();
+
+        if (!array_key_exists($type, $ev)) {
+            return;
+        }
+
+        foreach($ev[$type] as $callbeck){
             if(!is_callable($callbeck)){
                 throw new \Exception('Function is not collable in event type name:' . $type);
             }
             call_user_func($callbeck);
         }
     }
+
+    /**
+     * Get ]
+     *
+     * @return  array
+     */ 
+    public function getEvents()
+    {
+        return $this->events;
+    }
+
 }
