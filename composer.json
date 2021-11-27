@@ -1,0 +1,15 @@
+{
+    "name": "coder/test-work1",
+    "autoload": {
+        "psr-4": {
+            "Coder\\TestWork1\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "CodWorker",
+            "email": "thismyemailnew@gmail.com"
+        }
+    ],
+    "require": {}
+}
